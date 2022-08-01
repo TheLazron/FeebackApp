@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import {useState} from 'react';
 import './App.css';
-
+import {v4 as uuidv4} from 'uuid';
+import Header from './components/Header';
+import FeedbackList from './components/FeedbackList';
+import FeedBackData from './data/FeedbackData';
+import FeedbackStats from './components/FeedbackStats';
+import FeedbackForm from './components/FeedbackForm';
+import {FeedbackProvider} from './components/context/FeedbackContext';
 function App() {
+  // console.log(FeedBackData);
+
+  const [feedbacks, setfeedbacks]=useState(FeedBackData);
+
+ 
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <FeedbackProvider>
+      <Header Text="FeedBack UI"/>
+      <div className="container">
+      <FeedbackForm/>
+      <FeedbackStats/>
+          <FeedbackList/>
+      </div>
+    </FeedbackProvider>
   );
 }
 
